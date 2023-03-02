@@ -1,46 +1,186 @@
-# Getting Started with Create React App
+# Front End Software Engineer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Thank you for your interest in being part of the startup that is transforming the industry in Brazil. "Not knowing is no reason not to do it, on the contrary. It is the first step to expand your skills" - Bruno Felix, Co-Founder of TRACTIAN.
 
-## Available Scripts
+### Context
 
-In the project directory, you can run:
+Whenever you imagine an application for industry, you definitely get the idea of those very old and poorly organized screens. Yes, you figured it out! Fortunately, at TRACTIAN, we don't do that! We think a lot about usability, and it's no wonder that our slogan is to “make the Maintenance Manager's life easier”. Well-made screens are always in your head, so don't go easy!
 
-### `yarn start`
+### **Challenge**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<aside>
+📌 **Build an application that shows all possible data and actions using the API created in the back-end challenge.**
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+</aside>
 
-### `yarn test`
+### **Important:**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Show all features of assets;
+- Show companies, units and users;
+- Actions such as delegating responsibility, updating assets, company, unit and users;
+- Use graphs to show health levels, status and so on.
+- Consume API ([https://github.com/tractian/fake-api](https://github.com/tractian/fake-api))
 
-### `yarn build`
+### **Mandatory:**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Engine (React)
+- Graphics (Highcharts)
+- Typescript
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### **Differentials:**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Standard Projects (Clean Code/Clean Architecture)
+- AntDesign React
 
-### `yarn eject`
+<aside>
+💡 Please, be able to abstract well the presented problem and define it yourself which data you consider most important. 
+Think with the user's head: What does an industry person need to know about their assets? 
+In addition to the required libraries, you can use anything else and at the end publish your code on GitHub and [deploy](https://dev.to/yuribenjamin/how-to-deploy-react-app-in-github-pages-2a1f) the application
+(Heroku suggestion) because we want to see it online, then send us the links. 🔥
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+</aside>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Comments/Annotations
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Assets
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+- "status": inAlert (Em alerta), inOperation (Em operação), inDowntime (Em parada)
+- "healtscore": Saúde em %
+- "specifications"
+	- "maxTemp": Temperatura Máxima em Celsius
+	- "power": Potência em kWh
+	- "rpm": RPM
+- "metrics"
+	- "totalCollectsUptime": Total de Coletas Uptime(Ligada)
+	- "totalUptime": Total de Horas de Coletas Uptime(Ligada)
+	- "lastUptimeAt": Data da Ultima Coleta Uptime(Ligada)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- As a team member of tractian I'd like to show corelation of low healthscore and inAlert's status and inDowntime's status 
+- If I am the owner of this machines I'd like to see average healthscore, 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Asset's example:
+
+```{
+{
+		"assignedUserIds": [
+			1,
+			2,
+			3
+		],
+		"companyId": 1,
+		"healthHistory": [
+			{
+				"status": "inOperation",
+				"timestamp": "2022-12-01T00:00:00.000Z"
+			},
+			{
+				"status": "inDowntime",
+				"timestamp": "2022-12-08T00:00:00.000Z"
+			},
+			{
+				"status": "inOperation",
+				"timestamp": "2022-12-15T00:00:00.000Z"
+			},
+			{
+				"status": "inAlert",
+				"timestamp": "2022-12-22T00:00:00.000Z"
+			},
+			{
+				"status": "unplannedStop",
+				"timestamp": "2022-12-29T00:00:00.000Z"
+			}
+		],
+		"healthscore": 70,
+		"id": 1,
+		"image": "https://tractian-img.s3.amazonaws.com/6d5028682016cb43d02b857d4f1384ae.jpeg",
+		"metrics": {
+			"lastUptimeAt": "2023-01-01T16:17:50.180Z",
+			"totalCollectsUptime": 7516,
+			"totalUptime": 1419.620084999977
+		},
+		"model": "motor",
+		"name": "Motor H13D-1",
+		"sensors": [
+			"GSJ1535"
+		],
+		"specifications": {
+			"maxTemp": 80
+		},
+		"status": "inAlert",
+		"unitId": 1
+}
+```
+
+### Companies
+
+- Company's example
+
+```{
+	{
+		"id": 1,
+		"name": "The Test Company"
+	}
+```
+
+### Users 
+
+- User's example:
+
+```{
+	{
+		companyId: 1,
+		email: "testerOne@tractian.com",
+		id: 1,
+		name: "John Doe",
+		unitId: 1,
+	}
+```
+
+### Units
+
+- Unit's example:
+
+```{
+	{
+		"companyId": 1,
+		"id": 1,
+		"name": "Jaguar Unit"
+	}
+```
+
+### WorkOrder
+
+- If I am the owner of this machines I'd like to see workorders pizza chart to see if they are 100% done, status stats by priority;
+
+- WorkOrder's example:
+
+```{
+	{
+		"assetId": 5,
+		"assignedUserIds": [
+			1,
+			2,
+			3
+		],
+		"checklist": [
+			{
+				"completed": true,
+				"task": "Inspect Fan for visible damage"
+			},
+			{
+				"completed": true,
+				"task": "Test Fan for proper operation"
+			},
+			{
+				"completed": true,
+				"task": "Replace damaged parts"
+			}
+		],
+		"description": "The Fan is not working properly and needs to be repaired.",
+		"id": 1,
+		"priority": "high",
+		"status": "completed",
+		"title": "Repair Fan D21"
+	}
+```
