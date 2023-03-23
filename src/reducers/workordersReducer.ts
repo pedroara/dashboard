@@ -1,11 +1,8 @@
-import {
-  WorkOrdersFetchedAction,
-  WorkOrdersState,
-} from "../types/entities/workorder.d";
+import { WorkOrdersFetchedAction, WorkOrdersState } from "../types";
 
 const initialState: WorkOrdersState = {};
 
-const WorkOrdersReducer = (
+const workOrdersReducer = (
   state = initialState,
   action: WorkOrdersFetchedAction
 ) => {
@@ -18,4 +15,4 @@ const WorkOrdersReducer = (
   }
 };
 
-export default WorkOrdersReducer;
+export default workOrdersReducer;

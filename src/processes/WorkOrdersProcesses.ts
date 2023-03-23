@@ -1,8 +1,7 @@
-import { normalize } from "normalizr";
-import { schema } from "normalizr";
-// import { apiGet } from "./api";
+import { normalize, schema } from "normalizr";
 import { Dispatch } from "redux";
-import { WorkOrder } from "../types/entities/workorder";
+import { WorkOrder } from "../types";
+import { apiGet } from "./api";
 
 const workordersR = [
   {
@@ -80,12 +79,10 @@ const workOrderSchema = new schema.Entity<WorkOrder>("workOrders");
 const workOrderSchemaArray = new schema.Array(workOrderSchema);
 
 export const fetchWorkOrders = (dispatch: Dispatch) => {
-  // return apiGet("/workorders");
-
-  dispatch({
-    type: "WORKORDERS_FETCHED",
-    ...normalize(workordersR, workOrderSchemaArray),
+  return apiGet("/workorders").then((response: any) => {
+    dispatch({
+      type: "WORKORDERS_FETCHED",
+      ...normalize(response.body, workOrderSchemaArray),
+    });
   });
-
-  return workordersR;
 };

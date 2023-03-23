@@ -1,8 +1,7 @@
-import { Asset } from "./../types/entities/asset.d";
-import { normalize } from "normalizr";
-import { schema } from "normalizr";
-// import { apiGet } from "./api";
+import { normalize, schema } from "normalizr";
 import { Dispatch } from "redux";
+import { Asset } from "./../types/entities/asset.d";
+import { apiGet } from "./api";
 
 const assetsR = [
   {
@@ -279,12 +278,10 @@ const assetSchema = new schema.Entity<Asset>("assets");
 const assetSchemaArray = new schema.Array(assetSchema);
 
 export const fetchAssets = (dispatch: Dispatch) => {
-  // return apiGet("/assets");
-
-  dispatch({
-    type: "ASSETS_FETCHED",
-    ...normalize(assetsR, assetSchemaArray),
+  return apiGet("/assets").then((response: any) => {
+    dispatch({
+      type: "ASSETS_FETCHED",
+      ...normalize(response.body, assetSchemaArray),
+    });
   });
-
-  return assetsR;
 };

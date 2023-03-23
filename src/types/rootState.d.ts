@@ -4,6 +4,7 @@ import {
   UnitsState,
   UsersState,
   WorkOrdersState,
+  CurrentCompany,
 } from "../types";
 
 export interface RootState {
@@ -14,4 +15,5 @@ export interface RootState {
     users: UsersState;
     workOrders: WorkOrdersState;
   };
+  currentCompany: CurrentCompany;
 }

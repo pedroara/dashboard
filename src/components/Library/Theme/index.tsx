@@ -1,7 +1,14 @@
-const theme = {
+import { theme } from "antd";
+
+const customTheme = {
   token: {
-    colorPrimary: "#00b96b",
+    colorPrimary: "#263fa8",
+  },
+  spacing: {
+    s: "12px",
+    m: "16px",
+    l: "24px",
   },
 };
 
-export default theme;
+export { theme, customTheme };

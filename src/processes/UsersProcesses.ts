@@ -1,7 +1,7 @@
-// import { apiGet } from "./api";
+import { normalize, schema } from "normalizr";
 import { Dispatch } from "redux";
 import { User } from "../types/entities/user";
-import { normalize, schema } from "normalizr";
+import { apiGet } from "./api";
 
 const usersR = [
   {
@@ -45,9 +45,10 @@ const userSchema = new schema.Entity<User>("users");
 const userSchemaArray = new schema.Array(userSchema);
 
 export const fetchUsers = (dispatch: Dispatch) => {
-  // return apiGet("/users");
-
-  dispatch({ type: "USERS_FETCHED", ...normalize(usersR, userSchemaArray) });
-
-  return Promise.resolve(() => true);
+  return apiGet("/users").then((response: any) => {
+    dispatch({
+      type: "USERS_FETCHED",
+      ...normalize(response.body, userSchemaArray),
+    });
+  });
 };

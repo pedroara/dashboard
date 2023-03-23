@@ -1,8 +1,7 @@
-import { normalize } from "normalizr";
-import { schema } from "normalizr";
-// import { apiGet } from "./api";
+import { normalize, schema } from "normalizr";
 import { Dispatch } from "redux";
 import { Unit } from "../types/entities/unit";
+import { apiGet } from "./api";
 
 const unitsR = [
   {
@@ -21,9 +20,10 @@ const unitSchema = new schema.Entity<Unit>("units");
 const unitSchemaArray = new schema.Array(unitSchema);
 
 export const fetchUnits = (dispatch: Dispatch) => {
-  // return apiGet("/units");
-
-  dispatch({ type: "UNITS_FETCHED", ...normalize(unitsR, unitSchemaArray) });
-
-  return unitsR;
+  return apiGet("/units").then((response: any) => {
+    dispatch({
+      type: "UNITS_FETCHED",
+      ...normalize(response.body, unitSchemaArray),
+    });
+  });
 };
